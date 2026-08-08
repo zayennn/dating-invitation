@@ -1,0 +1,42 @@
+.success-heading {
+  font-family: 'Press Start 2P', cursive;
+  font-size: 20px;
+  color: var(--pixel-shadow);
+  text-shadow: 
+    2px 2px 0 var(--pink-light),
+    3px 3px 0 rgba(255, 143, 186, 0.3);
+  line-height: 1.6;
+  margin: 0;
+  animation: heading-appear 0.8s ease-out 0.3s both;
+}
+
+.success-message {
+  font-family: 'Press Start 2P', cursive;
+  font-size: 10px;
+  color: var(--pink-dark);
+  line-height: 1.8;
+  margin: 0;
+  max-width: 500px;
+  animation: heading-appear 0.8s ease-out 0.5s both;
+}
+
+@keyframes heading-appear {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@media (max-width: 768px) {
+  .success-heading {
+    font-size: 16px;
+  }
+  
+  .success-message {
+    font-size: 8px;
+  }
+}

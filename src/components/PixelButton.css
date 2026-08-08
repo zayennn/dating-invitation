@@ -1,0 +1,111 @@
+.pixel-button {
+  position: relative;
+  padding: 12px 24px;
+  border: none;
+  cursor: pointer;
+  font-family: 'Press Start 2P', cursive;
+  font-size: 14px;
+  text-transform: uppercase;
+  image-rendering: pixelated;
+  transition: all 0.2s ease;
+  outline: none;
+  background: transparent;
+  min-width: 120px;
+}
+
+.pixel-button__content {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 4px 8px;
+}
+
+.pixel-button::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  clip-path: polygon(
+    4px 0, calc(100% - 4px) 0,
+    100% 4px, 100% calc(100% - 4px),
+    calc(100% - 4px) 100%, 4px 100%,
+    0 calc(100% - 4px), 0 4px
+  );
+  transition: all 0.2s ease;
+}
+
+.pixel-button::after {
+  content: '';
+  position: absolute;
+  top: 3px;
+  left: 3px;
+  right: 3px;
+  bottom: 3px;
+  clip-path: polygon(
+    3px 0, calc(100% - 3px) 0,
+    100% 3px, 100% calc(100% - 3px),
+    calc(100% - 3px) 100%, 3px 100%,
+    0 calc(100% - 3px), 0 3px
+  );
+  transition: all 0.2s ease;
+}
+
+.pixel-button--primary::before {
+  background: var(--pixel-shadow);
+}
+
+.pixel-button--primary::after {
+  background: var(--pink-main);
+}
+
+.pixel-button--primary:hover::after {
+  background: var(--pink-light);
+}
+
+.pixel-button--primary:hover {
+  transform: translateY(-2px) scale(1.03);
+}
+
+.pixel-button--primary:active {
+  transform: translateY(0) scale(0.96);
+}
+
+.pixel-button--secondary::before {
+  background: var(--pink-dark);
+}
+
+.pixel-button--secondary::after {
+  background: var(--cream);
+  color: var(--pixel-shadow);
+}
+
+.pixel-button--secondary:hover::after {
+  background: #ffe8ef;
+}
+
+.pixel-button--disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.pixel-button--disabled:hover {
+  transform: none;
+}
+
+.pixel-button:focus {
+  outline: 3px solid var(--pink-light);
+  outline-offset: 2px;
+}
+
+@media (max-width: 768px) {
+  .pixel-button {
+    padding: 10px 18px;
+    font-size: 12px;
+    min-width: 100px;
+  }
+}
