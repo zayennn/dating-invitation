@@ -1,4 +1,3 @@
-/* Tambahkan di bagian atas index.css */
 :root {
   --background-image: url("./assets/background.png");
   --pink-main: #ff8fba;
@@ -19,14 +18,14 @@ html {
   overflow: hidden;
   height: 100%;
   width: 100%;
-  position: fixed; /* Prevent scroll on mobile */
+  position: fixed;
 }
 
 body {
   overflow: hidden;
   height: 100%;
   width: 100%;
-  position: fixed; /* Prevent scroll on mobile */
+  position: fixed;
   margin: 0;
   padding: 0;
   font-family: 'Press Start 2P', cursive;
