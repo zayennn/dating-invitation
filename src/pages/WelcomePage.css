@@ -17,14 +17,14 @@
   position: relative;
   align-items: center;
   justify-content: center;
-  min-height: 50px; /* Prevent layout shift */
+  min-height: 50px;
 }
 
 .no-button-wrapper {
   transition: all 0.3s ease;
   z-index: 100;
   display: inline-block;
-  /* Keep the button in normal flow initially */
+
 }
 
 .no-button-inner {
@@ -33,21 +33,20 @@
 
 .no-button-wrapper--moved {
   transition: all 0.15s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-  /* When moved, it's already position: fixed via inline style */
+
 }
 
 .no-button {
   cursor: pointer;
-  /* Prevent text selection */
+
   user-select: none;
   -webkit-user-select: none;
   -moz-user-select: none;
   -ms-user-select: none;
 }
 
-/* Prevent the button from causing scrollbars */
 .no-button-wrapper--moved .no-button {
-  max-width: calc(100vw - 40px); /* Ensure button doesn't exceed viewport */
+  max-width: calc(100vw - 40px);
   white-space: nowrap;
 }
 
@@ -75,6 +74,6 @@
   
   .no-button-wrapper--moved .no-button {
     max-width: calc(100vw - 30px);
-    font-size: 12px; /* Smaller font on mobile */
+    font-size: 12px;
   }
 }
