@@ -14,10 +14,8 @@ const WelcomePage = ({ onYes }) => {
   const isMoving = useRef(false)
   const MARGIN = 15
 
-  // Update button size when component mounts or window resizes
   useEffect(() => {
     const updateButtonSize = () => {
-      // Measure the actual button element for accurate sizing
       const el = noButtonInnerRef.current
       if (el) {
         const rect = el.getBoundingClientRect()
@@ -28,7 +26,6 @@ const WelcomePage = ({ onYes }) => {
       }
     }
 
-    // Measure after a tick to ensure render is complete
     const timer = setTimeout(updateButtonSize, 50)
     window.addEventListener('resize', updateButtonSize)
     
@@ -42,15 +39,12 @@ const WelcomePage = ({ onYes }) => {
     const vw = window.innerWidth
     const vh = window.innerHeight
     
-    // Compute safe bounds so button never goes off-screen
     const maxX = Math.max(MARGIN, vw - buttonSize.width - MARGIN)
     const maxY = Math.max(MARGIN, vh - buttonSize.height - MARGIN)
     
-    // Clamp to valid range
     const minX = Math.min(MARGIN, maxX)
     const minY = Math.min(MARGIN, maxY)
     
-    // Generate random position within safe bounds
     const randomX = minX + Math.random() * (maxX - minX)
     const randomY = minY + Math.random() * (maxY - minY)
     
@@ -58,14 +52,12 @@ const WelcomePage = ({ onYes }) => {
   }, [buttonSize])
 
   const moveNoButton = useCallback(() => {
-    // Prevent multiple rapid movements
     if (isMoving.current) return
     
     isMoving.current = true
     
     const newPosition = getRandomPosition()
     
-    // Hard clamp to ensure the button NEVER exceeds viewport boundaries
     const vw = window.innerWidth
     const vh = window.innerHeight
     const safeX = Math.max(MARGIN, Math.min(newPosition.x, vw - buttonSize.width - MARGIN))
@@ -73,7 +65,6 @@ const WelcomePage = ({ onYes }) => {
     
     setNoButtonPosition({ x: safeX, y: safeY })
     
-    // Reset moving flag after animation
     setTimeout(() => {
       isMoving.current = false
     }, 200)
@@ -83,19 +74,16 @@ const WelcomePage = ({ onYes }) => {
     const button = noButtonRef.current
     if (!button) return
 
-    // Mouse events
     const handleMouseEnter = (e) => {
       e.preventDefault()
       moveNoButton()
     }
 
-    // Touch events for mobile
     const handleTouchStart = (e) => {
       e.preventDefault()
       moveNoButton()
     }
 
-    // Also move on click attempt
     const handleClick = (e) => {
       e.preventDefault()
       e.stopPropagation()
@@ -136,7 +124,7 @@ const WelcomePage = ({ onYes }) => {
             position: 'fixed',
             left: `${noButtonPosition.x}px`,
             top: `${noButtonPosition.y}px`,
-            transform: 'translate(0, 0)', // Reset any transform
+            transform: 'translate(0, 
           } : {}}
         >
           <span ref={noButtonInnerRef} className="no-button-inner">
