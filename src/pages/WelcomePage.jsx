@@ -14,8 +14,10 @@ const WelcomePage = ({ onYes }) => {
   const isMoving = useRef(false)
   const MARGIN = 15
 
+  
   useEffect(() => {
     const updateButtonSize = () => {
+      
       const el = noButtonInnerRef.current
       if (el) {
         const rect = el.getBoundingClientRect()
@@ -26,6 +28,7 @@ const WelcomePage = ({ onYes }) => {
       }
     }
 
+    
     const timer = setTimeout(updateButtonSize, 50)
     window.addEventListener('resize', updateButtonSize)
     
@@ -39,11 +42,14 @@ const WelcomePage = ({ onYes }) => {
     const vw = window.innerWidth
     const vh = window.innerHeight
     
+    
     const maxX = Math.max(MARGIN, vw - buttonSize.width - MARGIN)
     const maxY = Math.max(MARGIN, vh - buttonSize.height - MARGIN)
     
+    
     const minX = Math.min(MARGIN, maxX)
     const minY = Math.min(MARGIN, maxY)
+    
     
     const randomX = minX + Math.random() * (maxX - minX)
     const randomY = minY + Math.random() * (maxY - minY)
@@ -52,11 +58,13 @@ const WelcomePage = ({ onYes }) => {
   }, [buttonSize])
 
   const moveNoButton = useCallback(() => {
+    
     if (isMoving.current) return
     
     isMoving.current = true
     
     const newPosition = getRandomPosition()
+    
     
     const vw = window.innerWidth
     const vh = window.innerHeight
@@ -64,6 +72,7 @@ const WelcomePage = ({ onYes }) => {
     const safeY = Math.max(MARGIN, Math.min(newPosition.y, vh - buttonSize.height - MARGIN))
     
     setNoButtonPosition({ x: safeX, y: safeY })
+    
     
     setTimeout(() => {
       isMoving.current = false
@@ -74,16 +83,19 @@ const WelcomePage = ({ onYes }) => {
     const button = noButtonRef.current
     if (!button) return
 
+    
     const handleMouseEnter = (e) => {
       e.preventDefault()
       moveNoButton()
     }
 
+    
     const handleTouchStart = (e) => {
       e.preventDefault()
       moveNoButton()
     }
 
+    
     const handleClick = (e) => {
       e.preventDefault()
       e.stopPropagation()
@@ -124,7 +136,7 @@ const WelcomePage = ({ onYes }) => {
             position: 'fixed',
             left: `${noButtonPosition.x}px`,
             top: `${noButtonPosition.y}px`,
-            transform: 'translate(0, 
+            transform: 'translate(0, 0)', 
           } : {}}
         >
           <span ref={noButtonInnerRef} className="no-button-inner">
